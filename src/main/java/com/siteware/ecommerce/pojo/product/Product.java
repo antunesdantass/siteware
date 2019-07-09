@@ -2,6 +2,7 @@ package com.siteware.ecommerce.pojo.product;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import java.io.Serializable;
 
 /**
  * Product entity, responsible for modeling how a product is in the system.
@@ -10,7 +11,9 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "TB_PRODUCT")
-public class Product {
+public class Product implements Serializable {
+
+    private static final long serialVersionUID = -265665862922221302L;
 
     private Long id;
 
