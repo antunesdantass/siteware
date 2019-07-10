@@ -1,5 +1,6 @@
 package com.siteware.ecommerce.service.discount;
 
+import java.util.Arrays;
 import java.util.function.BiFunction;
 
 /**
@@ -38,5 +39,20 @@ public enum Discount {
         this.name = name;
         this.description = description;
         this.discountFunction = discountFunction;
+    }
+
+    /**
+     * Returns the Discount function for a specified Discount.
+     * If there's no Discount with the provided name, the default Descount
+     * is returned.
+     *
+     * @param name Name of the Discount.
+     *
+     * @return The Discount function.
+     */
+    public static BiFunction<Double, Integer, Double> getDiscount(String name) {
+        Discount[] discounts = Discount.values();
+        return Arrays.stream(discounts).filter(discount -> discount.name.equals(name)).findFirst()
+                .get().discountFunction;
     }
 }
