@@ -7,6 +7,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
+import java.util.List;
 
 /**
  * Class responsible for communicating the system
@@ -14,14 +15,17 @@ import javax.transaction.Transactional;
  *
  * @author Antunes Dantas
  */
-@Transactional
+@Transactional(Transactional.TxType.MANDATORY)
 public class ProductDAO {
 
     private static final String GET_PRODUCT_BY_ID = new StringBuilder()
             .append("FROM Product prod WHERE prod.id = :id").toString();
 
     private static final String DELETE_PRODUCT_BY_ID = new StringBuilder()
-            .append("DELETE FROM Product proc WHERE prod.id = :id").toString();
+            .append("DELETE FROM Product prod WHERE prod.id = :id").toString();
+
+    private static final String GET_ALL_PRODUCTS = new StringBuilder()
+            .append("FROM Product").toString();
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -47,6 +51,18 @@ public class ProductDAO {
         query.setParameter("id", id);
 
         return query.getSingleResult();
+    }
+
+    /**
+     * Retrieves all the Products persisted.
+     *
+     * @return A List with all the Products saved on the system.
+     */
+    public List<Product> findAllProducts() {
+        TypedQuery<Product> query = getEntityManager()
+                .createQuery(GET_ALL_PRODUCTS, Product.class);
+
+        return query.getResultList();
     }
 
     /**
