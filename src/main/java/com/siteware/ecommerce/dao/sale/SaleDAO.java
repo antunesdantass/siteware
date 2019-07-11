@@ -9,6 +9,12 @@ import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 import java.util.List;
 
+/**
+ * Class responsible for communicating the system
+ * with the persistance context of the application.
+ *
+ * @author Antunes Dantas
+ */
 @Transactional(Transactional.TxType.MANDATORY)
 public class SaleDAO {
 
