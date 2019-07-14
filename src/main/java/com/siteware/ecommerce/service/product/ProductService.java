@@ -19,7 +19,7 @@ public interface ProductService {
      *
      * @return The Product with the given Id.
      */
-    public Product getProduct(Long id);
+    Product getProduct(Long id);
 
     /**
      * Persists a new Product in the database.
@@ -28,21 +28,21 @@ public interface ProductService {
      *
      * @return The created Product.
      */
-    public Product createProduct(Product product);
+    Product createProduct(Product product);
 
     /**
      * Retrieves all the persisted Products on the system.
      *
      * @return A List with all the Products.
      */
-    public List<Product> getAllProducts();
+    List<Product> getAllProducts();
 
     /**
      * Deletes a Product from the database.
      *
      * @param id The id of the Product to be deleted.
      */
-    public void deleteProduct(Long id) ;
+    void deleteProduct(Long id) ;
 
     /**
      * Updates an existing Product on the system.
@@ -51,6 +51,6 @@ public interface ProductService {
      *
      * @return The updated Product.
      */
-    public Product updateProduct(Product product);
+    Product updateProduct(Product product);
 
 }

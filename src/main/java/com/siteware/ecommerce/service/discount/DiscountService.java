@@ -1,5 +1,7 @@
 package com.siteware.ecommerce.service.discount;
 
+import com.siteware.ecommerce.dto.discount.DiscountDTO;
+
 import java.util.List;
 
 public interface DiscountService {
@@ -9,6 +11,6 @@ public interface DiscountService {
      *
      * @return a List with the Discounts.
      */
-    public List<Discount> getDiscounts();
+    List<DiscountDTO> getDiscounts();
 
 }
