@@ -1,5 +1,6 @@
 package com.siteware.ecommerce.pojo.product;
 
+import com.siteware.ecommerce.service.discount.Discount;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.Column;
@@ -11,6 +12,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.Optional;
 
 /**
  * Product entity, responsible for modeling how a product is in the system.
@@ -37,6 +39,9 @@ public class Product implements Serializable {
     @NotNull
     private Double pricing;
 
+    @Column(name = "FK_DISCOUNT")
+    private Discount discount;
+
     public Product() {}
 
     public Product(String name, Double pricing) {
@@ -60,12 +65,36 @@ public class Product implements Serializable {
         this.name = name;
     }
 
+    /**
+     * Calculates the price for the Sale with the amount requested.
+     * If there's no Discount associated with the Product, it's calculated
+     * the price per item.
+     *
+     * @param quantity amount of item's to be purchased.
+     *
+     * @return the total price for the amount requested.
+     */
+    public Double getPricing(Integer quantity) {
+        Optional<Discount> discount = Optional.ofNullable(getDiscount());
+
+        return discount.map(disc -> disc.calculatePrice(pricing, quantity))
+                .orElse(pricing * quantity);
+    }
+
     public Double getPricing() {
-        return pricing;
+        return getPricing(1);
     }
 
     public void setPricing(Double pricing) {
         this.pricing = pricing;
+    }
+
+    public Discount getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(Discount discount) {
+        this.discount = discount;
     }
 
     @Override

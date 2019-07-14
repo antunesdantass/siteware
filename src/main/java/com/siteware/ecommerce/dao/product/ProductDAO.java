@@ -1,6 +1,7 @@
 package com.siteware.ecommerce.dao.product;
 
 import com.siteware.ecommerce.pojo.product.Product;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -16,6 +17,7 @@ import java.util.List;
  * @author Antunes Dantas
  */
 @Transactional(Transactional.TxType.MANDATORY)
+@Component
 public class ProductDAO {
 
     private static final String GET_PRODUCT_BY_ID = new StringBuilder()

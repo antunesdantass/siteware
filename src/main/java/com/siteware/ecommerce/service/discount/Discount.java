@@ -10,8 +10,6 @@ import java.util.function.BiFunction;
  */
 public enum Discount {
 
-    DEFAULT ("Default", "Promoção default", DiscountFunctions.DEFAULT),
-
     TRES_POR_10 ("Três por 10", DiscountDescriptions.TRES_POR_10, DiscountFunctions.TRES_POR_10),
 
     PAGUE_UM_LEVE_DOIS ("Pague Um Leve Dois", DiscountDescriptions.PAGUE_UM_LEVE_DOIS, DiscountFunctions.PAGUE_UM_LEVE_DOIS);
@@ -41,18 +39,22 @@ public enum Discount {
         this.discountFunction = discountFunction;
     }
 
-    /**
-     * Returns the Discount function for a specified Discount.
-     * If there's no Discount with the provided name, the default Descount
-     * is returned.
-     *
-     * @param name Name of the Discount.
-     *
-     * @return The Discount function.
-     */
-    public static BiFunction<Double, Integer, Double> getDiscount(String name) {
-        Discount[] discounts = Discount.values();
-        return Arrays.stream(discounts).filter(discount -> discount.name.equals(name)).findFirst()
-                .get().discountFunction;
+    public Double calculatePrice(Double pricing, Integer quantity) {
+        return this.discountFunction.apply(pricing, quantity);
     }
+
+//    /**
+//     * Returns the Discount function for a specified Discount.
+//     * If there's no Discount with the provided name, the default Descount
+//     * is returned.
+//     *
+//     * @param name Name of the Discount.
+//     *
+//     * @return The Discount function.
+//     */
+//    public static BiFunction<Double, Integer, Double> getDiscount(String name) {
+//        Discount[] discounts = Discount.values();
+//        return Arrays.stream(discounts).filter(discount -> discount.name.equals(name)).findFirst()
+//                .get().discountFunction;
+//    }
 }

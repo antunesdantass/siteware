@@ -3,3 +3,6 @@
 
 # Local config files
 eSW.iml
+
+# Compiled files
+target/
