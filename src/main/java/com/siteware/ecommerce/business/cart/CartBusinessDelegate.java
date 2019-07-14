@@ -15,8 +15,10 @@ public class CartBusinessDelegate {
     /**
      * Just returns the Cart because Jackson (the parser for JSON)
      * will automatically calculate the total amount.
-     * @param cart
-     * @return
+     *
+     * @param cart A Cart with the item's.
+     *
+     * @return The Cart with the total price calculated.
      */
     public CartDTO calculateCart(CartDTO cart) {
         return cart;
