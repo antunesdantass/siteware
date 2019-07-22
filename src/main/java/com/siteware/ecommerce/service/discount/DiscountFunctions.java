@@ -24,13 +24,19 @@ public class DiscountFunctions {
      * rest of them will be charged individually.
      */
     public static final BiFunction<Double, Integer, Double> TRES_POR_10 = (pricing, quantity) -> {
-        return ((quantity - (quantity % 3)) / 3) * 10 + (quantity % 3) * pricing;
-
+        final Double discountPrice = 10.0;
+        final Integer amountForDiscount = 3;
+        final Integer quantityElegible = (quantity - (quantity % amountForDiscount)) / amountForDiscount;
+        final Integer quantityNotElegible = quantity % amountForDiscount;
+        return quantityElegible * discountPrice + quantityNotElegible * pricing;
     };
 
     /**
      * This Discount works by giving for free the second item chose of the same kind.
      */
-    public static final BiFunction<Double, Integer, Double> PAGUE_UM_LEVE_DOIS = (pricing, quantity) ->
-            ((quantity - 1) / 2) * pricing + pricing;
+    public static final BiFunction<Double, Integer, Double> PAGUE_UM_LEVE_DOIS = (pricing, quantity) -> {
+        final Integer amountForDiscount = 2;
+        final Integer quantityElegible = (quantity - 1) / amountForDiscount;
+        return quantityElegible * pricing + pricing;
+    };
 }
