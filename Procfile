@@ -1,0 +1,1 @@
+web: java -jar -Dserver.port=$PORT target/eSW-1.0-SNAPSHOT.jar
