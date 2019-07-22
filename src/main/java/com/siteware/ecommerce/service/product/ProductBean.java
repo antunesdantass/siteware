@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -54,6 +55,6 @@ public class ProductBean implements ProductService {
 
     @Override
     public List<Product> getProductsById(List<Long> ids) {
-        return productDAO.findProductsByListOfId(ids);
+        return ids.isEmpty()? new ArrayList<>() : productDAO.findProductsByListOfId(ids);
     }
 }
