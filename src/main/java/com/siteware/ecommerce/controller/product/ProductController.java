@@ -3,6 +3,7 @@ package com.siteware.ecommerce.controller.product;
 import com.siteware.ecommerce.pojo.product.Product;
 import com.siteware.ecommerce.service.product.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +21,7 @@ import java.util.List;
  *
  * @author Antunes Dantas
  */
+@CrossOrigin
 @RestController
 @RequestMapping("/product")
 public class ProductController {

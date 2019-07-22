@@ -19,8 +19,9 @@ public class CartDTO implements Serializable {
 
     public CartDTO() { }
 
-    public CartDTO(List<CartItemDTO> items) {
+    public CartDTO(List<CartItemDTO> items, Double total) {
         this.items = items;
+        this.total = total;
     }
 
     public List<CartItemDTO> getItems() {
@@ -32,7 +33,7 @@ public class CartDTO implements Serializable {
     }
 
     public Double getTotal() {
-        return items.stream().map(cartItemDTO -> cartItemDTO.getPrice())
+        return items.stream().map(cartItemDTO -> cartItemDTO.getTotalPrice())
                 .reduce(0.0, Double::sum);
     }
 

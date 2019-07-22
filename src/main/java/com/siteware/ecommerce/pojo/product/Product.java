@@ -1,5 +1,6 @@
 package com.siteware.ecommerce.pojo.product;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.siteware.ecommerce.service.discount.Discount;
 import org.hibernate.validator.constraints.Length;
 
@@ -21,6 +22,7 @@ import java.util.Optional;
  */
 @Entity
 @Table(name = "TB_PRODUCT")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Product implements Serializable {
 
     private static final long serialVersionUID = -265665862922221302L;

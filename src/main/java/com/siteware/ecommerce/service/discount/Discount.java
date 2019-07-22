@@ -30,7 +30,7 @@ public enum Discount {
      * @param discountFunction a Function which takes two arguments, the item's price and
      *                         the amount on the cart and returns the value for those items.
      */
-    private Discount(String name,
+    Discount(String name,
                      String description,
                      BiFunction<Double, Integer, Double> discountFunction) {
         this.name = name;

@@ -40,7 +40,7 @@ public class CartItemDTO implements Serializable {
         this.quantity = quantity;
     }
 
-    public Double getPrice() {
+    public Double getTotalPrice() {
         return item.getPricing(quantity);
     }
 }
