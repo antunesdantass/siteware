@@ -19,9 +19,8 @@ public class CartDTO implements Serializable {
 
     public CartDTO() { }
 
-    public CartDTO(List<CartItemDTO> items, Double total) {
+    public CartDTO(List<CartItemDTO> items) {
         this.items = items;
-        this.total = total;
     }
 
     public List<CartItemDTO> getItems() {

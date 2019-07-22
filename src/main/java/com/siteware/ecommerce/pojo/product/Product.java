@@ -41,7 +41,7 @@ public class Product implements Serializable {
     @NotNull
     private Double pricing;
 
-    @Column(name = "FK_DISCOUNT")
+    @Column(name = "DISCOUNT")
     private Discount discount;
 
     public Product() {}

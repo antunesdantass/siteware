@@ -2,6 +2,7 @@ package com.siteware.ecommerce.service.product;
 
 import com.siteware.ecommerce.dao.product.ProductDAO;
 import com.siteware.ecommerce.pojo.product.Product;
+import com.siteware.ecommerce.validator.product.ProductValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +21,9 @@ public class ProductBean implements ProductService {
     @Autowired
     private ProductDAO productDAO;
 
+    @Autowired
+    private ProductValidator productValidator;
+
     @Override
     public List<Product> getAllProducts() {
         return productDAO.findAllProducts();
@@ -27,6 +31,7 @@ public class ProductBean implements ProductService {
 
     @Override
     public Product createProduct(Product product) {
+        productValidator.validateProduct(product);
         productDAO.persistProduct(product);
 
         return productDAO.findProductById(product.getId());
@@ -45,5 +50,10 @@ public class ProductBean implements ProductService {
     @Override
     public void deleteProduct(Long id) {
         productDAO.deleteProduct(id);
+    }
+
+    @Override
+    public List<Product> getProductsById(List<Long> ids) {
+        return productDAO.findProductsByListOfId(ids);
     }
 }

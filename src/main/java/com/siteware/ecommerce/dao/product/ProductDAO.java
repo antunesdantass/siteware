@@ -29,6 +29,9 @@ public class ProductDAO {
     private static final String GET_ALL_PRODUCTS = new StringBuilder()
             .append("FROM Product").toString();
 
+    private static final String GET_PRODUCTS_WITH_IDS = new StringBuilder()
+            .append("FROM Product prod WHERE prod.id in :ids").toString();
+
     @PersistenceContext
     private EntityManager entityManager;
 
@@ -63,6 +66,22 @@ public class ProductDAO {
     public List<Product> findAllProducts() {
         TypedQuery<Product> query = getEntityManager()
                 .createQuery(GET_ALL_PRODUCTS, Product.class);
+
+        return query.getResultList();
+    }
+
+    /**
+     * Retrieves all the Products which it's Id is on the list
+     * passed as paremeter.
+     *
+     * @param ids List of Ids of the products to be retrieved.
+     *
+     * @return A List with the Products.
+     */
+    public List<Product> findProductsByListOfId(List<Long> ids) {
+        TypedQuery<Product> query = getEntityManager()
+                .createQuery(GET_PRODUCTS_WITH_IDS, Product.class);
+        query.setParameter("ids", ids);
 
         return query.getResultList();
     }

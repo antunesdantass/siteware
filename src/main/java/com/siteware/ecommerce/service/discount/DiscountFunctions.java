@@ -23,8 +23,10 @@ public class DiscountFunctions {
      * what's the price for the item. If the amount of item's is not a multiple of three, the
      * rest of them will be charged individually.
      */
-    public static final BiFunction<Double, Integer, Double> TRES_POR_10 = (pricing, quantity) ->
-            ((quantity - (quantity % 3)) / 3) * 10 + (quantity % 3) * pricing;
+    public static final BiFunction<Double, Integer, Double> TRES_POR_10 = (pricing, quantity) -> {
+        return ((quantity - (quantity % 3)) / 3) * 10 + (quantity % 3) * pricing;
+
+    };
 
     /**
      * This Discount works by giving for free the second item chose of the same kind.

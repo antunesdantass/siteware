@@ -53,4 +53,14 @@ public interface ProductService {
      */
     Product updateProduct(Product product);
 
+    /**
+     * Retrieves all the Products which it's Id is on the list
+     * passed as paremeter.
+     *
+     * @param ids List of Ids of the products to be retrieved.
+     *
+     * @return List of Products.
+     */
+    List<Product> getProductsById(List<Long> ids);
+
 }
